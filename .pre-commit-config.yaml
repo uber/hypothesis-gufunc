@@ -47,4 +47,3 @@
     hooks:
     -   id: forbid-crlf
     -   id: forbid-tabs
-
