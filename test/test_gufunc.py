@@ -7,7 +7,6 @@ from functools import reduce
 import numpy as np
 import numpy.lib.function_base as npfb
 
-import hypothesis.extra.gufunc as gu
 from hypothesis import given
 from hypothesis.errors import InvalidArgument
 from hypothesis.extra.numpy import from_dtype, scalar_dtypes
@@ -26,6 +25,8 @@ from hypothesis.strategies import (
     sets,
     tuples,
 )
+
+import hypothesis_gufunc.gufunc as gu
 
 # Use to sample from simple names, we also can sample from npfb._SIGNATURE
 # regex to get all possible signatures. This regex also doesn't start with
