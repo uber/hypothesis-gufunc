@@ -115,4 +115,20 @@ do
     conda deactivate
 done
 
-# TODO(tests) build some test for tool!!
+# Set up environments for all Python versions and loop over them
+rm -rf "$CONDA_ENVS"
+for i in "${PY_VERSIONS[@]}"
+do
+    # Now test the deps
+    ENV_PATH="${CONDA_ENVS}/unit_test"
+    conda create -y -q -p $ENV_PATH python=$i
+    echo $ENV_PATH
+    source activate $ENV_PATH
+    python --version
+    pip freeze | sort
+
+    pip install -r requirements/test.txt
+    python setup.py install
+
+    pytest test/ -v -s --cov=hypothesis_gufunc --cov-report html --hypothesis-seed=0
+done
