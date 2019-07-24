@@ -1,0 +1,5 @@
+-r base.in
+hypothesis==4.13.0
+numpy==1.16.1
+pytest==5.0.1
+pytest_cov==2.7.1
