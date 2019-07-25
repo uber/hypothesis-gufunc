@@ -30,20 +30,20 @@ help:
 clean:
 	rm -rf $(BUILDDIR)/*
 
-readmemd.md:
-	cp ../README.md readmemd.md
+readme.rst:
+	cp ../README.rst readme.rst
 
-html: readmemd.md
+html: readme.rst
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
 
-dirhtml: readmemd.md
+dirhtml: readme.rst
 	$(SPHINXBUILD) -b dirhtml $(ALLSPHINXOPTS) $(BUILDDIR)/dirhtml
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/dirhtml."
 
-singlehtml: readmemd.md
+singlehtml: readme.rst
 	$(SPHINXBUILD) -b singlehtml $(ALLSPHINXOPTS) $(BUILDDIR)/singlehtml
 	@echo
 	@echo "Build finished. The HTML page is in $(BUILDDIR)/singlehtml."
