@@ -8,9 +8,7 @@ alabaster==0.7.12         # via sphinx
 babel==2.7.0              # via sphinx
 certifi==2019.6.16        # via requests
 chardet==3.0.4            # via requests
-commonmark==0.9.0         # via recommonmark
-docutils==0.15.1.post1    # via recommonmark, sphinx
-future==0.17.1            # via commonmark
+docutils==0.15.1.post1    # via sphinx
 idna==2.8                 # via requests
 imagesize==1.1.0          # via sphinx
 jinja2==2.10.1            # via sphinx
@@ -19,11 +17,10 @@ packaging==19.0           # via sphinx
 pygments==2.4.2           # via sphinx
 pyparsing==2.4.0          # via packaging
 pytz==2019.1              # via babel
-recommonmark==0.5.0
 requests==2.22.0          # via sphinx
 six==1.12.0               # via packaging
 snowballstemmer==1.9.0    # via sphinx
-sphinx==2.1.2             # via recommonmark
+sphinx==2.1.2
 sphinxcontrib-applehelp==1.0.1  # via sphinx
 sphinxcontrib-devhelp==1.0.1  # via sphinx
 sphinxcontrib-htmlhelp==1.0.2  # via sphinx
