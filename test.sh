@@ -59,8 +59,8 @@ git clean -x -f -d --exclude=tmp
 
 # Tool to get compare only the package names in pip file
 # On mac, sed -r needs to be seed -E
-nameonly () { grep -i '^[a-z0-9]' | sed -r "s/([^=]*)==.*/\1/g" | sort -f; }
-pipcheck () { cat $@ | grep -i '^[a-z0-9]' | awk '{print $1}' | sort -f | uniq >ask.log && pip freeze | sort -f >got.log && diff -i ask.log got.log; }
+nameonly () { grep -i '^[a-z0-9]' | sed -r "s/([^=]*)==.*/\1/g" | tr _ - | sort -f; }
+pipcheck () { cat $@ | grep -i '^[a-z0-9]' | awk '{print $1}' | sort -f | uniq >ask.log && pip freeze | sed -r /^certifi==/d | sort -f >got.log && diff -i ask.log got.log; }
 
 # Set up environments for all Python versions and loop over them
 rm -rf "$CONDA_ENVS"
@@ -92,23 +92,23 @@ do
     # Make sure .in file corresponds to what is imported
     nameonly <requirements/base.in >ask.log
     pipreqs hypothesis_gufunc/ --savepath requirements_chk.in
-    echo requirements_chk.in | nameonly >got.log
+    nameonly < requirements_chk.in >got.log
     diff ask.log got.log
 
     nameonly <requirements/test.in >ask.log
     pipreqs test/ --savepath requirements_chk.in
-    echo requirements_chk.in | nameonly >got.log
+    nameonly <requirements_chk.in >got.log
     diff ask.log got.log
 
     # Make sure txt file corresponds to pip compile
     pip-compile-multi -o chk
 
     nameonly <requirements/base.txt >ask.log
-    echo requirements/base.chk | nameonly >got.log
+    nameonly <requirements/base.chk >got.log
     diff ask.log got.log
 
     nameonly <requirements/test.txt >ask.log
-    echo requirements/test.chk | nameonly >got.log
+    nameonly <requirements/test.chk >got.log
     diff ask.log got.log
 
     # Deactivate virtual environment
