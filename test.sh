@@ -79,6 +79,8 @@ do
     pipcheck requirements/base.txt
     pip install -r requirements/test.txt
     pipcheck requirements/base.txt requirements/test.txt
+    pip install -r requirements/docs.txt
+    pipcheck requirements/base.txt requirements/test.txt requirements/docs.txt
 
     # Install package
     python setup.py install
@@ -100,6 +102,11 @@ do
     nameonly <requirements_chk.in >got.log
     diff ask.log got.log
 
+    nameonly <requirements/docs.in >ask.log
+    pipreqs docs/ --savepath requirements_chk.in
+    nameonly <requirements_chk.in >got.log
+    diff ask.log got.log
+
     # Make sure txt file corresponds to pip compile
     pip-compile-multi -o chk
 
@@ -109,6 +116,10 @@ do
 
     nameonly <requirements/test.txt >ask.log
     nameonly <requirements/test.chk >got.log
+    diff ask.log got.log
+
+    nameonly <requirements/docs.txt >ask.log
+    nameonly <requirements/docs.chk >got.log
     diff ask.log got.log
 
     # Deactivate virtual environment
