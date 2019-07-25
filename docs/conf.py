@@ -117,6 +117,7 @@ intersphinx_mapping = {
     "pytest": ("https://docs.pytest.org/en/stable/", None),
     "django": ("https://django.readthedocs.io/en/stable/", None),
     "attrs": ("https://www.attrs.org/en/stable/", None),
+    "hypothesis": ("https://hypothesis.readthedocs.io/en/latest/", None),
 }
 
 # -- Options for HTML output -------------------------------------------
