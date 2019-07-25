@@ -15,6 +15,7 @@ We also allow for adding extra dimensions that follow the numpy broadcasting
 conventions via
 
 .. code-block:: python
+
   @gufunc_args('(m,n),(n,p)->(m,p)', dtype=np.float_, elements=floats(), max_dims_extra=3)
 
 This can be used when checking if a function follows the correct numpy
