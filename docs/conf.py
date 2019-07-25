@@ -38,7 +38,13 @@ sys.path.insert(0, project_root)
 
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ["sphinx.ext.autodoc", "sphinx.ext.viewcode", "sphinx.ext.napoleon", "recommonmark"]
+extensions = [
+    "sphinx.ext.autodoc",
+    "sphinx.ext.extlinks",
+    "sphinx.ext.viewcode",
+    "sphinx.ext.intersphinx",
+    "sphinx.ext.napoleon",
+]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
@@ -104,6 +110,14 @@ pygments_style = "sphinx"
 # documents.
 # keep_warnings = False
 
+intersphinx_mapping = {
+    "python": ("https://docs.python.org/3/", None),
+    "numpy": ("https://docs.scipy.org/doc/numpy/", None),
+    "pandas": ("https://pandas.pydata.org/pandas-docs/stable/", None),
+    "pytest": ("https://docs.pytest.org/en/stable/", None),
+    "django": ("https://django.readthedocs.io/en/stable/", None),
+    "attrs": ("https://www.attrs.org/en/stable/", None),
+}
 
 # -- Options for HTML output -------------------------------------------
 
