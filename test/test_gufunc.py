@@ -279,8 +279,7 @@ def test_int_int_or_dict(default_val, default_val2):
     assert DD["---"] == default_val
 
 
-# hypothesis.extra.numpy.array_shapes does not support 0 min_size so we roll
-# our own in this case.
+# hypothesis.extra.numpy.array_shapes does not support 0 min_size so we roll our own in this case.
 @given(lists(_st_shape, min_size=0, max_size=5), real_scalar_dtypes(), booleans(), data())
 def test_shapes_tuple_of_arrays(shapes, dtype, unique, data):
     elements = from_dtype(np.dtype(dtype))
@@ -295,8 +294,7 @@ def test_shapes_tuple_of_arrays(shapes, dtype, unique, data):
         assert tuple(spec) == np.shape(drawn)
 
 
-# hypothesis.extra.numpy.array_shapes does not support 0 min_size so we roll
-# our own in this case.
+# hypothesis.extra.numpy.array_shapes does not support 0 min_size so we roll our own in this case.
 @given(lists(_st_shape, min_size=0, max_size=5), real_scalar_dtypes(), booleans(), data())
 def test_just_shapes_tuple_of_arrays(shapes, dtype, unique, data):
     elements = from_dtype(np.dtype(dtype))

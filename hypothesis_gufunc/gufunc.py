@@ -257,7 +257,7 @@ def gufunc_arg_shapes(signature, excluded=(), min_side=0, max_side=5, max_dims_e
         cases of 0 or 1 sized dimensions when applicable, but if not, a min
         size can be supplied here. Minimums can be provided on a per-dimension
         basis using a dict, e.g. ``min_side={'n': 2}``. One can use, e.g.,
-        ``min_side={hypothesis.extra.gufunc.BCAST_DIM: 2}`` to limit the size
+        ``min_side={hypothesis_gufunc.gufunc.BCAST_DIM: 2}`` to limit the size
         of the broadcasted dimensions.
     max_side : int or dict
         Maximum size of any side of the arrays. This can usually be kept small
@@ -279,7 +279,7 @@ def gufunc_arg_shapes(signature, excluded=(), min_side=0, max_side=5, max_dims_e
     --------
     .. code-block:: pycon
 
-      >>> from hypothesis.extra.gufunc import BCAST_DIM
+      >>> from hypothesis_gufunc.gufunc import BCAST_DIM
       >>> gufunc_arg_shapes('(m,n),(n)->(m)',
                             min_side={'m': 1, 'n': 2}, max_side=3).example()
       [(2, 3), (3,)]
@@ -362,7 +362,7 @@ def gufunc_args(signature, dtype, elements, unique=False, excluded=(), min_side=
         cases of 0 or 1 sized dimensions when applicable, but if not, a min
         size can be supplied here. Minimums can be provided on a per-dimension
         basis using a dict, e.g. ``min_side={'n': 2}``. One can use, e.g.,
-        ``min_side={hypothesis.extra.gufunc.BCAST_DIM: 2}`` to limit the size
+        ``min_side={hypothesis_gufunc.gufunc.BCAST_DIM: 2}`` to limit the size
         of the broadcasted dimensions.
     max_side : int or dict
         Maximum size of any side of the arrays. This can usually be kept small
@@ -384,7 +384,7 @@ def gufunc_args(signature, dtype, elements, unique=False, excluded=(), min_side=
     --------
     .. code-block:: pycon
 
-      >>> from hypothesis.extra.gufunc import BCAST_DIM
+      >>> from hypothesis_gufunc.gufunc import BCAST_DIM
       >>> from hypothesis.strategies import integers, booleans
       >>> gufunc_args('(m,n),(n)->(m)',
                       dtype=np.int_, elements=integers(0, 9), max_side=3,
