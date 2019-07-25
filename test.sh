@@ -128,7 +128,8 @@ do
     pip freeze | sort
 
     pip install -r requirements/test.txt
-    python setup.py install
+    # for some reason ``python setup.py install`` results in path issues with conda
+    pip install -e .
 
     pytest test/ -v -s --cov=hypothesis_gufunc --cov-report html --hypothesis-seed=0
 done
