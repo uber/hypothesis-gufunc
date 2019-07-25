@@ -1,5 +1,5 @@
 """This module implements strategies for creating arguments for functions that follow numpy's
-`Generalized UniversalFunction API <https://docs.scipy.org/doc/numpy/reference/c-api.generalized-ufuncs.html>`_.
+`Generalized Universal Function API <https://docs.scipy.org/doc/numpy/reference/c-api.generalized-ufuncs.html>`_.
 """
 from __future__ import absolute_import, division, print_function
 
