@@ -60,7 +60,7 @@ git clean -x -f -d --exclude=tmp
 # Tool to get compare only the package names in pip file
 # On mac, sed -r needs to be seed -E
 nameonly () { grep -i '^[a-z0-9]' | sed -r "s/([^=]*)==.*/\1/g" | tr _ - | sort -f; }
-pipcheck () { cat $@ | grep -i '^[a-z0-9]' | awk '{print $1}' | sort -f | uniq >ask.log && pip freeze | sed -r /^certifi==/d | sort -f >got.log && diff -i ask.log got.log; }
+pipcheck () { cat $@ | grep -i '^[a-z0-9]' | awk '{print $1}' | sed -r /^certifi==/d | sort -f | uniq >ask.log && pip freeze | sed -r /^certifi==/d | sort -f >got.log && diff -i ask.log got.log; }
 
 # Set up environments for all Python versions and loop over them
 rm -rf "$CONDA_ENVS"
