@@ -6,7 +6,7 @@ Credits
 Development lead
 ~~~~~~~~~~~~~~~~
 
-Ryan Turner (ryan.turner@uber.com)
+Ryan Turner (rdturnermtl)
 
 ~~~~~~~~~~~~
 Contributors

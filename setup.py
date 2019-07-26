@@ -9,7 +9,6 @@ setup(
     name="hypothesis_gufunc",
     version="0.0.1",
     packages=find_packages(),
-    author_email=("ryan.turner@uber.com"),
     description="Extension to hypothesis to generate inputs for general universal (GU) numpy functions.",
     install_requires=requirements,
 )
