@@ -2,6 +2,8 @@
 Hypothesis GU Funcs
 ===================
 
+This project is experimental and the APIs are not considered stable.
+
 This package includes support for strategies which generate arguments to
 functions that follow the numpy general universal function API. So, it can
 automatically generate the matrices with shapes that follow the shape
