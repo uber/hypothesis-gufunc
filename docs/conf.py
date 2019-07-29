@@ -207,3 +207,32 @@ html_static_path = []
 
 # Output file base name for HTML help builder.
 htmlhelp_basename = "hypothesis_gufunc_doc"
+
+# -- Options for Texinfo output ----------------------------------------
+
+# Grouping the document tree into Texinfo files. List of tuples
+# (source start file, target name, title, author,
+#  dir menu entry, description, category)
+texinfo_documents = [
+    (
+        "index",
+        "hypothesis_gufunc",
+        "Hypothesis GU Function Documentation",
+        "Uber AI Labs",
+        "hypothesis_gufunc",
+        "Extension of hypothesis package to generate arguments to numpy GU functions.",
+        "Miscellaneous",
+    )
+]
+
+# Documents to append as an appendix to all manuals.
+# texinfo_appendices = []
+
+# If false, no module index is generated.
+# texinfo_domain_indices = True
+
+# How to display URL addresses: 'footnote', 'no', or 'inline'.
+# texinfo_show_urls = 'footnote'
+
+# If true, do not generate a @detailmenu in the "Top" node's menu.
+# texinfo_no_detailmenu = False

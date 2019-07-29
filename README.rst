@@ -9,22 +9,41 @@ constraints. For example, to generate test inputs for `np.dot`, one can use,
 
 .. code-block:: python
 
-  @gufunc_args('(m,n),(n,p)->(m,p)', dtype=np.float_, elements=floats())
+  import numpy as np
+  from hypothesis import given
+  from hypothesis.strategies import floats
+  from hypothesis_gufunc.gufunc import gufunc_args
+
+  easy_floats = floats(min_value=-10, max_value=10)
+
+  @given(gufunc_args('(m,n),(n,p)->(m,p)', dtype=np.float_, elements=easy_floats))
+  def test_np_dot(args):
+      x, y = args
+      assert np.allclose(np.dot(x, y), np.dot(y.T, x.T).T)
+
+  test_np_dot()  # Run the test
 
 We also allow for adding extra dimensions that follow the numpy broadcasting
-conventions via
+conventions. This allows one to test that the broadcasting follows the
+vectorization conventions:
 
 .. code-block:: python
 
-  @gufunc_args('(m,n),(n,p)->(m,p)', dtype=np.float_, elements=floats(), max_dims_extra=3)
+  @given(gufunc_args('(m,n),(n,p)->(m,p)', dtype=np.float_, elements=easy_floats, max_dims_extra=3))
+  def test_np_matmul(args):
+      x, y = args
+      f_vec = np.vectorize(np.matmul, signature='(m,n),(n,p)->(m,p)', otypes=[np.float_])
+      assert np.allclose(np.matmul(x, y), f_vec(x, y))
 
-This can be used when checking if a function follows the correct numpy
-broadcasting semantics.
+  test_np_matmul()  # Run the test
+
+Providing `max_dims_extra=3` gives up to 3 broadcast compatible dimensions on each of the arguments.
 
 ------------------------
 Quick Start/Installation
 ------------------------
-Checkout this repo, and cd to its root directory. Then install with
+
+Checkout this repo, and `cd` to its root directory. Then install with
 
 .. code-block::
 
@@ -41,13 +60,13 @@ If one would like the same pinned requirements we use during testing, then insta
 Running the Tests
 -----------------
 
-The tests for this package can be run with:
+The tests for this package can be run by first doing a `cd` to its root directory and then
 
 .. code-block::
 
-  pip install requirements/test.txt
-  pip install -e .
   ./test.sh
+
+The requirements used in testing can be found in `requirements/test.txt`.
 
 -----
 Links
