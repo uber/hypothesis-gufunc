@@ -1,3 +1,6 @@
+.. image:: https://travis-ci.com/uber/hypothesis-gufunc.svg?token=RSemjpisB7uiZv78DVwd&branch=master
+    :target: https://travis-ci.com/uber/hypothesis-gufunc
+
 ===================
 Hypothesis GU Funcs
 ===================

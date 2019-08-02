@@ -45,7 +45,7 @@
     hooks:
     -   id: forbid-crlf
     -   id: forbid-tabs
-- repo: git@github.com:Yelp/detect-secrets
+- repo: https://github.com/Yelp/detect-secrets
   rev: v0.12.5
   hooks:
     - id: detect-secrets
