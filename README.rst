@@ -1,9 +1,9 @@
-.. image:: https://travis-ci.com/uber/hypothesis-gufunc.svg?token=RSemjpisB7uiZv78DVwd&branch=master
-    :target: https://travis-ci.com/uber/hypothesis-gufunc
-
 ===================
 Hypothesis GU Funcs
 ===================
+
+.. image:: https://api.travis-ci.com/uber/hypothesis-gufunc.png?token=RSemjpisB7uiZv78DVwd&branch=master
+    :target: https://travis-ci.com/uber/hypothesis-gufunc
 
 This project is experimental and the APIs are not considered stable.
 

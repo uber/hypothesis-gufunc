@@ -65,6 +65,7 @@ master_doc = "index"
 
 # General information about the project.
 project = "hypothesis_gufunc"
+author = "Hypothesis GU Functions Team"
 copyright = "2018-2019"
 
 # The version info for the project you're documenting, acts as replacement
@@ -217,8 +218,8 @@ texinfo_documents = [
     (
         "index",
         "hypothesis_gufunc",
-        "Hypothesis GU Function Documentation",
-        "Uber AI Labs",
+        "Hypothesis GU Functions Documentation",
+        "Hypothesis GU Functions Team",
         "hypothesis_gufunc",
         "Extension of hypothesis package to generate arguments to numpy GU functions.",
         "Miscellaneous",
