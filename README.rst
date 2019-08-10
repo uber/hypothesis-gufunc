@@ -84,3 +84,9 @@ A description of the numpy
 
 Likewise, the numpy broadcasting rules are described
 `here <https://docs.scipy.org/doc/numpy/user/basics.broadcasting.html>`_.
+
+-------
+License
+-------
+
+This project is licensed under the Apache 2 License - see the LICENSE file for details.
