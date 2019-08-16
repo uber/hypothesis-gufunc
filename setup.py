@@ -7,7 +7,7 @@ requirements = requirements.replace("==", ">=").split()  # Convert to non-pinned
 
 setup(
     name="hypothesis_gufunc",
-    version="0.0.2",
+    version="0.0.3",
     packages=find_packages(),
     description="Extension to hypothesis to generate inputs for general universal (GU) numpy functions.",
     install_requires=requirements,
