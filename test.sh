@@ -8,6 +8,9 @@ export CONDA_PATH=./tmp/conda
 export CONDA_ENVS=env
 PY_VERSIONS=( "3.6" )
 
+# Sometime pip PIP_REQUIRE_VIRTUALENV has issues with conda
+export PIP_REQUIRE_VIRTUALENV=false
+
 # Handy to know what we are working with
 git --version
 
@@ -57,10 +60,10 @@ test -z "$(git diff)"
 # clean up for good measure, but need to keep miniconda tmp folder
 git clean -x -f -d --exclude=tmp
 
-# Tool to get compare only the package names in pip file
+# Tool to get compare only the package names in pip file, delete out name of this package hypothesis-gufunc
 # On mac, sed -r needs to be seed -E
-nameonly () { grep -i '^[a-z0-9]' | sed -r "s/([^=]*)==.*/\1/g" | tr _ - | sort -f; }
-pipcheck () { cat $@ | grep -i '^[a-z0-9]' | awk '{print $1}' | sed -r /^certifi==/d | sort -f | uniq >ask.log && pip freeze | sed -r /^certifi==/d | sort -f >got.log && diff -i ask.log got.log; }
+nameonly () { grep -i '^[a-z0-9]' | sed -E "s/([^=]*)==.*/\1/g" | tr _ - | sed -E /^hypothesis-gufunc$/d | sort -f; }
+pipcheck () { cat $@ | grep -i '^[a-z0-9]' | awk '{print $1}' | sed -E /^certifi==/d | sort -f | uniq >ask.log && pip freeze | sed -E /^certifi==/d | sort -f >got.log && diff -i ask.log got.log; }
 
 # Set up environments for all Python versions and loop over them
 rm -rf "$CONDA_ENVS"

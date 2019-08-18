@@ -48,17 +48,19 @@ Providing `max_dims_extra=3` gives up to 3 broadcast compatible dimensions on ea
 Quick Start/Installation
 ------------------------
 
-Checkout this repo, and `cd` to its root directory. Then install with
+Simply install with pip:
 
 .. code-block::
 
-  pip install -e .
+  pip install hypothesis-gufunc
 
-If one would like the same pinned requirements we use during testing, then install with
+If one would like the same pinned requirements we use during testing, then one can install from the repo with:
 
 .. code-block::
 
-  pip install requirements/base.txt
+  git clone git@github.com:uber/hypothesis-gufunc.git
+  cd hypothesis-gufunc
+  pip install -r requirements/base.txt
   pip install -e .
 
 -----------------
@@ -71,11 +73,15 @@ The tests for this package can be run by first doing a `cd` to its root director
 
   ./test.sh
 
-The requirements used in testing can be found in `requirements/test.txt`.
+The script creates a conda environment using the requirements found in `requirements/test.txt`.
 
 -----
 Links
 -----
+
+The `source <https://github.com/uber/hypothesis-gufunc>`_ is hosted on GitHub.
+
+The `documentation <http://hypothesis-gufunc.readthedocs.io/>`_ is hosted at Read the Docs.
 
 The main `hypothesis project <https://hypothesis.readthedocs.io/en/latest/>`_.
 

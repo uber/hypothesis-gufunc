@@ -1,1 +1,1 @@
-hypothesis-gufunc==0.0.3
+hypothesis-gufunc==0.0.4rc3
