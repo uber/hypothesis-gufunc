@@ -17,6 +17,7 @@ def torchify(args):
 
 @given(gufunc_args("(m,n),(n,p)->(m,p)", dtype=np.float_, elements=easy_floats, min_side=1).map(torchify))
 def test_torch_matmul(args):
+    """Run `pip install torch>=1.2.0` for this example."""
     x, y = args
     assert torch.allclose(torch.matmul(x, y), torch.matmul(y.T, x.T).T)
 
