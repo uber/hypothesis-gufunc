@@ -1,3 +1,5 @@
+# Copyright (c) 2019 Uber Technologies, Inc.
+# SPDX-License-Identifier: Apache-2.0
 from hypothesis import given
 from hypothesis.strategies import floats, integers
 

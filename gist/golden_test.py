@@ -8,3 +8,6 @@ def test_np_dot_golden():
     Y = np.array([[5, 6], [7, 8.8]])
     Z = np.dot(X, Y)
     assert np.all(Z == np.array([[21.5, 26.6], [43.0, 53.2]]))
+
+
+test_np_dot_golden()
