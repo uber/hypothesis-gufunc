@@ -94,24 +94,27 @@ Once installed, one can generate a data array as follows:
 .. code-block:: python
 
   from hypothesis.strategies import integers, lists
-  from hypothesis_xarray.xr import fixed_dataarrays
+  from hypothesis_gufunc.extra.xr import fixed_dataarrays
 
-  fixed_dataarrays(("a", "b"), coords_st={"a": lists(integers(0, 3))}
+  S = fixed_dataarrays(("a", "b"), coords_st={"a": lists(integers(0, 3))})
+  S.example()
 
 Here, `coords_st` allows one to specify a custom strategy for the coordinates on a per-dimension basis. Likewise, if
-one has known coordinates one can call `fixed_coords_dataarrays`; or `dataarrays` if one wants both the dimensions and
-coordinates determined by the strategy.
+one has known coordinates one can call `fixed_coords_dataarrays`; or
+`dataarrays` if one wants both the dimensions and coordinates determined by the
+strategy.
 
 The package also has the ability to generate a dataset:
 
 .. code-block:: python
 
-  from hypothesis_xarray.xr import fixed_datasets
+  from hypothesis_gufunc.extra.xr import fixed_datasets
 
-  fixed_datasets({5: ("a", "b"), "bar": ("b"), "baz": ()}, coords_st={"a": lists(integers(0, 3))}
+  S = fixed_datasets({5: ("a", "b"), "bar": ("b"), "baz": ()}, coords_st={"a": lists(integers(0, 3))})
+  S.example()
 
-One can use `fixed_coords_datasets` when the coordinates are determined; or simply `datasets` to have both the
-dimensions and coordinates generated.
+One can use `fixed_coords_datasets` when the coordinates are determined; or simply
+`datasets` to have both the dimensions and coordinates generated.
 
 -----
 Links
