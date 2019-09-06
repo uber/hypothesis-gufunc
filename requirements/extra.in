@@ -1,0 +1,3 @@
+-r base.in
+hypothesis==4.13.0
+xarray==0.12.3

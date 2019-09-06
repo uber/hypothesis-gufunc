@@ -1,3 +1,4 @@
 include requirements/base.in
+include requirements/extra.in
 include LICENSE
 recursive-exclude test *

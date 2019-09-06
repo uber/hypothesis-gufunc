@@ -15,11 +15,6 @@
 import os
 import sys
 
-import sphinx
-
-# Import sphinx to be explicit about requirements, and make pipreqs happy
-assert sphinx.__version__ >= "2.1.2"
-
 # If extensions (or modules to document with autodoc) are in another
 # directory, add these directories to sys.path here. If the directory is
 # relative to the documentation root, use os.path.abspath to make it
@@ -64,7 +59,7 @@ source_suffix = {".rst": "restructuredtext", ".txt": "markdown", ".md": "markdow
 master_doc = "index"
 
 # General information about the project.
-project = "hypothesis_gufunc"
+project = "hypothesis-gufunc"
 author = "Hypothesis GU Functions Team"
 copyright = "2018-2019"
 
@@ -124,6 +119,7 @@ intersphinx_mapping = {
     "django": ("https://django.readthedocs.io/en/stable/", None),
     "attrs": ("https://www.attrs.org/en/stable/", None),
     "hypothesis": ("https://hypothesis.readthedocs.io/en/latest/", None),
+    "xarray": ("http://xarray.pydata.org/en/stable/", None),
 }
 
 # -- Options for HTML output -------------------------------------------
@@ -217,10 +213,10 @@ htmlhelp_basename = "hypothesis_gufunc_doc"
 texinfo_documents = [
     (
         "index",
-        "hypothesis_gufunc",
+        "hypothesis-gufunc",
         "Hypothesis GU Functions Documentation",
         "Hypothesis GU Functions Team",
-        "hypothesis_gufunc",
+        "hypothesis-gufunc",
         "Extension of hypothesis package to generate arguments to numpy GU functions.",
         "Miscellaneous",
     )

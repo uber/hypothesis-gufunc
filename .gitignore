@@ -1,0 +1,23 @@
+.*
+!.gitignore
+!.pre-commit-config.yaml
+!.readthedocs.yml
+!.secrets.baseline
+!.travis.yml
+
+# Python
+*.py[co]
+*.egg*
+.cache
+.DS_Store
+
+# env
+env/
+
+# Emacs
+*~
+.\#*
+\#*\#
+
+# Coverage
+htmlcov/

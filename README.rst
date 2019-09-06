@@ -7,6 +7,8 @@ Hypothesis GU Funcs
 
 This project is experimental and the APIs are not considered stable.
 
+Only `Python>=3.6` is officially supported, but older versions of Python likely work as well.
+
 This package includes support for strategies which generate arguments to
 functions that follow the numpy general universal function API. So, it can
 automatically generate the matrices with shapes that follow the shape
@@ -75,13 +77,49 @@ The tests for this package can be run by first doing a `cd` to its root director
 
 The script creates a conda environment using the requirements found in `requirements/test.txt`.
 
+---------------------
+Hypothesis for Xarray
+---------------------
+
+This package also contains an extension to hypothesis to generate xarray data structures.
+
+To install the package with the xarray dependencies install it with pip as
+
+.. code-block::
+
+  pip install hypothesis-gufunc[xarray]
+
+Once installed, one can generate a data array as follows:
+
+.. code-block:: python
+
+  from hypothesis.strategies import integers, lists
+  from hypothesis_xarray.xr import fixed_dataarrays
+
+  fixed_dataarrays(("a", "b"), coords_st={"a": lists(integers(0, 3))}
+
+Here, `coords_st` allows one to specify a custom strategy for the coordinates on a per-dimension basis. Likewise, if
+one has known coordinates one can call `fixed_coords_dataarrays`; or `dataarrays` if one wants both the dimensions and
+coordinates determined by the strategy.
+
+The package also has the ability to generate a dataset:
+
+.. code-block:: python
+
+  from hypothesis_xarray.xr import fixed_datasets
+
+  fixed_datasets({5: ("a", "b"), "bar": ("b"), "baz": ()}, coords_st={"a": lists(integers(0, 3))}
+
+One can use `fixed_coords_datasets` when the coordinates are determined; or simply `datasets` to have both the
+dimensions and coordinates generated.
+
 -----
 Links
 -----
 
 The `source <https://github.com/uber/hypothesis-gufunc>`_ is hosted on GitHub.
 
-The `documentation <http://hypothesis-gufunc.readthedocs.io/>`_ is hosted at Read the Docs.
+The `documentation <https://hypothesis-gufunc.readthedocs.io/en/latest/>`_ is hosted at Read the Docs.
 
 The main `hypothesis project <https://hypothesis.readthedocs.io/en/latest/>`_.
 
@@ -90,6 +128,8 @@ A description of the numpy
 
 Likewise, the numpy broadcasting rules are described
 `here <https://docs.scipy.org/doc/numpy/user/basics.broadcasting.html>`_.
+
+The `xarray <http://xarray.pydata.org/en/stable/index.html>`_ project describes data arrays and datasets.
 
 -------
 License

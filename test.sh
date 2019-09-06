@@ -6,7 +6,7 @@ set -o pipefail
 # Set conda paths
 export CONDA_PATH=./tmp/conda
 export CONDA_ENVS=env
-PY_VERSIONS=( "3.6" )
+PY_VERSIONS=( "3.6" "3.7" )
 
 # Sometime pip PIP_REQUIRE_VIRTUALENV has issues with conda
 export PIP_REQUIRE_VIRTUALENV=false
@@ -49,8 +49,7 @@ echo $ENV_PATH
 source activate $ENV_PATH
 python --version
 pip freeze | sort
-# not listing 2nd order deps here, but probably ok
-pip install pre-commit==1.15.2
+pip install -r requirements/tools.txt
 # Now run hooks on all files, don't need to install hooks since run directly
 pre-commit run --all-files
 # Now can leave env with  pre-commit
@@ -80,24 +79,29 @@ do
     # Install all requirements, make sure they are mutually compatible
     pip install -r requirements/base.txt
     pipcheck requirements/base.txt
+    pip install -r requirements/extra.txt
+    pipcheck requirements/base.txt requirements/extra.txt
     pip install -r requirements/test.txt
-    pipcheck requirements/base.txt requirements/test.txt
+    pipcheck requirements/base.txt requirements/extra.txt requirements/test.txt
     pip install -r requirements/docs.txt
-    pipcheck requirements/base.txt requirements/test.txt requirements/docs.txt
+    pipcheck requirements/base.txt requirements/extra.txt requirements/test.txt requirements/docs.txt
+    # Install pipreqs and pip-compile
+    pip install -r requirements/tools.txt
+    pipcheck requirements/base.txt requirements/extra.txt requirements/test.txt requirements/docs.txt requirements/tools.txt
 
     # Install package
     python setup.py install
     pipcheck requirements/*.txt
 
-    # Install pipreqs and pip-compile, not listing 2nd order deps here, but probably ok
-    pip install pipreqs==0.4.9
-    pip install pip-tools==3.8.0
-    pip install pip-compile-multi==1.4.0
-
     # Make sure .in file corresponds to what is imported
     nameonly <requirements/base.in >ask.log
-    pipreqs hypothesis_gufunc/ --savepath requirements_chk.in
-    nameonly < requirements_chk.in >got.log
+    pipreqs hypothesis_gufunc/ --ignore hypothesis_gufunc/extra/ --savepath requirements_chk.in
+    nameonly <requirements_chk.in >got.log
+    diff ask.log got.log
+
+    nameonly <requirements/extra.in >ask.log
+    pipreqs hypothesis_gufunc/extra/ --savepath requirements_chk.in
+    nameonly <requirements_chk.in >got.log
     diff ask.log got.log
 
     nameonly <requirements/test.in >ask.log
@@ -115,6 +119,10 @@ do
 
     nameonly <requirements/base.txt >ask.log
     nameonly <requirements/base.chk >got.log
+    diff ask.log got.log
+
+    nameonly <requirements/extra.txt >ask.log
+    nameonly <requirements/extra.chk >got.log
     diff ask.log got.log
 
     nameonly <requirements/test.txt >ask.log

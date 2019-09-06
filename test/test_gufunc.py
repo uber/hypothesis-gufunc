@@ -19,8 +19,6 @@ from functools import reduce
 
 import numpy as np
 import numpy.lib.function_base as npfb
-import pytest
-import pytest_cov
 from hypothesis import given
 from hypothesis.errors import InvalidArgument
 from hypothesis.extra.numpy import from_dtype, scalar_dtypes
@@ -41,10 +39,6 @@ from hypothesis.strategies import (
 )
 
 import hypothesis_gufunc.gufunc as gu
-
-# Import these guys and do something with them, just so pipreqs know we need them
-assert pytest.__version__ >= "5.0.1"
-assert pytest_cov.__version__ >= "2.7.1"
 
 # Use to sample from simple names, we also can sample from npfb._SIGNATURE
 # regex to get all possible signatures. This regex also doesn't start with
