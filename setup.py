@@ -15,7 +15,7 @@ with open("README.rst") as f:
 
 setup(
     name="hypothesis_gufunc",
-    version="0.0.5rc2",
+    version="0.0.5",
     packages=find_packages(exclude=("test/",)),
     description="Extension to hypothesis to generate inputs for general universal (GU) numpy functions.",
     install_requires=base_requirements,
