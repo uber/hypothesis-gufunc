@@ -18,6 +18,7 @@ setup(
     version="0.0.5",
     packages=find_packages(exclude=("test/",)),
     description="Extension to hypothesis to generate inputs for general universal (GU) numpy functions.",
+    python_requires=">=3.6",
     install_requires=base_requirements,
     extras_require={"xarray": extra_requirements},
     url="https://github.com/uber/hypothesis-gufunc",
@@ -37,6 +38,8 @@ setup(
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
         "Topic :: Software Development :: Testing",
     ],
 )

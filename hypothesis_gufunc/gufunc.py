@@ -23,10 +23,8 @@ import numpy as np
 import numpy.lib.function_base as npfb
 from hypothesis.errors import InvalidArgument
 from hypothesis.extra.numpy import arrays, order_check
-from hypothesis.internal.compat import integer_types
 from hypothesis.internal.validation import check_type, check_valid_bound
-from hypothesis.searchstrategy import SearchStrategy
-from hypothesis.strategies import builds, composite, fixed_dictionaries, integers, just, tuples
+from hypothesis.strategies import SearchStrategy, builds, composite, fixed_dictionaries, integers, just, tuples
 
 __all__ = ["gufunc_args", "gufunc_arg_shapes"]
 
@@ -91,13 +89,13 @@ def _int_or_dict(x, default_val):
     if isinstance(x, defaultdict):
         return x
 
-    check_type(integer_types, default_val, "default value")
+    check_type(int, default_val, "default value")
     try:
         # case 2: x is or can be converted to dict
         D = defaultdict(lambda: default_val, x)
     except Exception:
         # case 3: x is int => make a const dict
-        check_type(integer_types, x, "constant value")
+        check_type(int, x, "constant value")
         D = defaultdict(lambda: x)
     # case 4: if can't be converted to dict or int, then exception raised
     return D
@@ -309,7 +307,7 @@ def gufunc_arg_shapes(signature, excluded=(), min_side=0, max_side=5, max_dims_e
     min_side = _int_or_dict(min_side, 0)
     max_side = _int_or_dict(max_side, DEFAULT_MAX_SIDE)
     _order_check_min_max(min_side, max_side)
-    check_type(integer_types, max_dims_extra, "extra dims")
+    check_type(int, max_dims_extra, "extra dims")
     order_check("extra dims", 0, max_dims_extra, GLOBAL_DIMS_MAX)
 
     # Validate that the signature contains digits we can parse

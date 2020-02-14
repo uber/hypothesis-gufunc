@@ -22,7 +22,6 @@ import numpy.lib.function_base as npfb
 from hypothesis import given
 from hypothesis.errors import InvalidArgument
 from hypothesis.extra.numpy import from_dtype, scalar_dtypes
-from hypothesis.internal.compat import hunichr, integer_types
 from hypothesis.strategies import (
     booleans,
     composite,
@@ -45,6 +44,10 @@ import hypothesis_gufunc.gufunc as gu
 # digits because if it is parsed as number we could end up with very large
 # dimensions that blow out memory.
 VALID_DIM_NAMES = r"\A[a-zA-Z_][a-zA-Z0-9_]*\Z"
+
+# These used to be in hypothesis.internal.compat, but were removed with Py2 deprecation. So, redefining:
+integer_types = (int,)
+hunichr = chr
 
 _st_shape = lists(integers(min_value=0, max_value=5), min_size=0, max_size=3).map(tuple)
 
