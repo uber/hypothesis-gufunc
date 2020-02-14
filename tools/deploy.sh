@@ -13,12 +13,14 @@ REMOTE=$1
 BRANCH=$2
 PACKAGE=$3
 VERSION=$4
-# TODO check $VERSION matches what is in repo
+
+# Check to make sure we have keys setup right before we start
+git push --dry-run
 
 # Where envs go
 ENVS=~/envs
 # Which python version this uses
-PY=python3.6
+PY=python3.7
 # Which env contains twine and py version we use
 TWINE_ENV=twine_env
 # Where to run tar ball tests from
@@ -29,6 +31,11 @@ mkdir -p $TEST_DIR
 # Get the dir
 REPO_DIR=$(pwd)
 git checkout $BRANCH
+
+# Check versions are there, this is a crude way to do it but it works
+grep "^$PACKAGE==$VERSION\$" requirements/self.txt
+grep '^__version__ = "'$VERSION'"$' hypothesis_gufunc/__init__.py
+grep 'version="'$VERSION'",$' setup.py
 
 # Fail if untracked files and clean
 test -z "$(git status --porcelain)"
@@ -136,7 +143,7 @@ git push $REMOTE master
 git diff master $REMOTE/master --quiet
 
 # Show sha256sum in case we want to check against PyPI test
-sha256sum dist/*
+shasum -a 256 dist/*
 
 # See if tests pass remote, TODO use travis CLI
 read -p "Travis tests pass, and push to PyPI? This cannot be undone. [y/n]" -n 1 -r
