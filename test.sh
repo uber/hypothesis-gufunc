@@ -6,7 +6,9 @@ set -o pipefail
 # Set conda paths
 export CONDA_PATH=./tmp/conda
 export CONDA_ENVS=env
-PY_VERSIONS=( "3.6" "3.7" )
+# Only check dep consistency under py3.6 due to ambiguity of importlib in reqs for >= 3.7
+PY_VERSIONS_DEPS=( "3.6" )
+PY_VERSIONS_TESTS=( "3.6" "3.7" "3.8" )
 
 # Sometime pip PIP_REQUIRE_VIRTUALENV has issues with conda
 export PIP_REQUIRE_VIRTUALENV=false
@@ -66,7 +68,7 @@ pipcheck () { cat $@ | grep -i '^[a-z0-9]' | awk '{print $1}' | sed -E /^certifi
 
 # Set up environments for all Python versions and loop over them
 rm -rf "$CONDA_ENVS"
-for i in "${PY_VERSIONS[@]}"
+for i in "${PY_VERSIONS_DEPS[@]}"
 do
     # Now test the deps
     ENV_PATH="${CONDA_ENVS}/deps_test"
@@ -139,7 +141,7 @@ done
 
 # Set up environments for all Python versions and loop over them
 rm -rf "$CONDA_ENVS"
-for i in "${PY_VERSIONS[@]}"
+for i in "${PY_VERSIONS_TESTS[@]}"
 do
     # Now test the deps
     ENV_PATH="${CONDA_ENVS}/unit_test"
